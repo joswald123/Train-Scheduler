@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+    <script src="https://kit.fontawesome.com/9e841bfc77.js"></script>
+
+    <title>Train schedule</title>
+</head>
+
+<body>
+    
+    <video autoplay muted loop id="myVideo">
+        <source src="assets/images/background-train.mp4" type="video/mp4">
+    </video>
+
+    <div class="choo">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Anytime is Train Time</h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Choo Choo. Chee Chee.</h2>
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+   
+    <div class="container main-container">
+        <div class="row">
+
+            <div class="col-md-12">
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Train Name</th>
+                            <th>Destination</th>
+                            <th>Frecuency (min)</th>
+                            <th>Next Arrival</th>
+                            <th>Minutes Away</th>
+                            <th>Action</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id="train_name"></td>
+                            <td id="place"></td>
+                            <td id="frecuencyMinutes"></td>
+                            <td id="nextArrival"></td>
+                            <td id="minutesAway"></td>
+                            <td id="action"></td>
+
+                        </tr>
+
+                    </tbody>
+                </table>
+
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="container bg-light text-dark rounded">
+
+        <div class="form-group bg-light text-dark rounded">
+
+            <div class="col-md-12 bg-light text-dark rounded">
+
+                <form>
+                    <div class="form-group">
+                        <label for="formGroupExampleInput1">Train Name</label>
+                        <input type="text" class="form-control" id="trainName" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="formGroupExampleInput2">Destination</label>
+                        <input type="text" class="form-control" id="destination" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="formGroupExampleInput3">Frecuency (min)</label>
+                        <input type="text" class="form-control" id="frecuency" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="formGroupExampleInput4">First Train Time (HH:mm - military time)</label>
+                        <input type="text" class="form-control" id="firstTrain" placeholder="">
+                    </div>
+
+
+                    <button type="button" class="btn btn-primary offset-md-5" data-toggle="button" aria-pressed="false"
+                        autocomplete="off" id="submitButton" id="add_row">
+                        Submit
+                    </button>
+                </form>
+
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+</body>
+
+
+<script src="assets/javascript/train.js"></script>
+
+</body>
+
+</html>

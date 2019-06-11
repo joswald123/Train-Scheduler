@@ -1,0 +1,76 @@
+
+#myVideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%; 
+    min-height: 100%;
+  }
+
+  .container-tittle{
+    
+     
+    width: 100%;
+    height: 20%;
+    font-size: 30px;
+    color: #333;
+    line-height: 30px;
+    border-bottom: 20px;
+  }
+
+
+  
+  .main-container{
+    border: solid 2px rgb(17, 16, 16);
+    box-shadow: 0 0 8px 3px #fff; 
+    margin-top: 15px;  
+    
+  }
+
+  .table {
+      
+    text-align: left;
+    color: rgb(20, 20, 20);
+    width: 100%;
+    border: 2px solid #333;
+      
+      
+  }
+
+  td{
+    
+    padding: 20px;
+    background: rgba(240, 252, 255, 0.586);
+    font-weight: 500;
+    
+    
+
+  }
+
+  thead {
+    background: rgba(0, 0, 0, 0.8);
+    color: #f1f1f1;
+      
+
+      
+  }
+
+  .choo{
+  position: fixed;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  color: #f1f1f1;
+  width: 100%;
+  padding: 20px;
+  text-align: center;
+
+  }
+
+  .chee{
+    background: rgba(0, 0, 0, 0.8)
+  }
+  .text-dark{
+
+    padding: 10px 10px 10px 10px;
+    font-weight: 400; 
+  }
