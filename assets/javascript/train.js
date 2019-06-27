@@ -1,4 +1,5 @@
 
+
 var config = {
   apiKey: "AIzaSyDzyUkYGSaUmyj5FOKC0NQcvGz-1d1jWxg",
   authDomain: "train-homework-c2836.firebaseapp.com",
@@ -24,38 +25,38 @@ var tMinutesTillTrain = "";
 $('#submitButton').on('click', function (event) {
   event.preventDefault();
 
-  var trainName = $("#trainName").val().trim();
-  var destinationPlace = $("#destination").val().trim();
-  var firstTrainTime = $("#firstTrain").val().trim();
-  var tFrecuency = $("#frecuency").val().trim();
+  let trainName = $("#trainName").val().trim();
+  let destinationPlace = $("#destination").val().trim();
+  let firstTrainTime = $("#firstTrain").val().trim();
+  let tFrecuency = $("#frecuency").val().trim();
 
+  const key = database.ref().push().key
+  console.log(key)
 
-
-  var traintoAdd = {
+  let traintoAdd = {
     trainName,
     destinationPlace,
     firstTrainTime,
-    tFrecuency
+    tFrecuency,
+    key
   }
+  const updates = {}
+  updates[key] = traintoAdd
 
-
-  database.ref().push(traintoAdd);
+  database.ref().update(updates);
 
 
 })
-
-database.ref().on("value", function (snapshot) {
-   console.log(snapshot.val())
-  const data = snapshot.val();
-  $("#trainResults").empty();
-  // creating a new Row with input info
+function displayUpdate(data){
   for (let key in data) {
-    console.log("I'm in the data loop")
+    console.log(data.key)
+   
     var $newRow = $('<tr>')
-    $newRow.append($('<td>').text(data[key].trainName))
-    $newRow.append($('<td>').text(data[key].destinationPlace))
-    $newRow.append($('<td>').text(data[key].tFrecuency))
-    console.log($newRow)
+    $newRow.append($('<td>').text(data[key].trainName).addClass(data[key].key))
+    $newRow.append($('<td>').text(data[key].destinationPlace).addClass(data[key].key))
+    $newRow.append($('<td>').text(data[key].tFrecuency).addClass(data[key].key))
+
+   
     // Moment.js functions: 
 
     // First Time (pushed back 1 year to make sure it comes before current tFrecuency)
@@ -77,26 +78,30 @@ database.ref().on("value", function (snapshot) {
     $newRow.append($('<td>').text(nextTrain))
     $newRow.append($('<td>').text(tMinutesTillTrain))
     $newRow.append($('<td>').append('<i class="fas fa-eraser"></i>'))
-    $newRow.append($('<td>').append('<i class="fas fa-edit"></i>'))
+    $newRow.append($('<td>').append(`<i class="fas fa-edit" data-id=${data[key].key}></i>`))
 
     $("#trainResults").append($newRow);
   }
+}
+database.ref().on("value", function (snapshot) {
+   console.log(snapshot.val())
+  const data = snapshot.val();
+  $("#trainResults").empty();
+
+  // creating a new Row with input info
+  
+displayUpdate(data); 
 
 // update time
 
-function updateTime () {
-  
-  const now = moment();
-  const minutes = now.format("mm");
 
-  console.log(minutes);
-
-  
-}
-
-setInterval (updateTime, 1000);
-updateTime();
-
+setInterval(function(){
+  $("#trainResults").empty();
+  database.ref().once('value', function(snapshot){
+    const data = snapshot.val(); 
+    displayUpdate(data); 
+  })
+},60000)
 
 // create an event listening for an icon. inside on.click function = delete function or edit funtion 
 
@@ -106,15 +111,16 @@ $(document).on('click', '.fa-eraser', function (event) {
   
 });
 
-// $(document).on('click', '.fa-edit', function (event) {
-//   event.preventDefault();
+$(document).on('click', '.fa-edit', function (event) {
+  event.preventDefault();
+  const id = $(this).attr("data-id")
 
-//   $('td',$newRow).each(function() { $(this).html('<input type="text" value="' + $(this).html() + '" />'); 
+  $(`td.${id}` ).each(function() { $(this).html('<input type="text""' + $(this).html() + '" />'); 
 
   
-//   });
+  });
 
-// });
+});
 
 
 });
